@@ -41,14 +41,15 @@ public partial class ODS : Node {
         XmlNodeList rows = ((XmlElement)sheet).GetElementsByTagName("table:table-row");
         if (sheetName == "VERSION") {
           XmlNodeList cells = ((XmlElement)rows[0]).GetElementsByTagName("table:table-cell");
-          Version = cells[0].InnerText.Trim().Replace("/",".");
-        } else if (sheetName.StartsWith("SET.")) {
+          Version = cells[0].InnerText.Trim().Replace("/", ".");
+        }
+        else if (sheetName.StartsWith("SET.")) {
           List<List<string>> sheetData = [];
           bool cutR1 = true;
 
           foreach (XmlNode row in rows) {
             XmlNodeList cells = ((XmlElement)row).GetElementsByTagName("table:table-cell");
-            if (cutR1) { 
+            if (cutR1) {
               cutR1 = false;
               sheetName = cells[0].InnerText.Trim();
               continue;

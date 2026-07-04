@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://cg3hylang5fxn"]
+
+[ext_resource type="Script" uid="uid://d25jwt6qd0blf" path="res://main.gd" id="1_j0gfq"]
+
+[node name="Main" type="Control" unique_id=1259373906]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_j0gfq")
+
+[node name="READ" type="Button" parent="." unique_id=402323987]
+layout_mode = 0
+offset_left = 378.0
+offset_top = 799.0
+offset_right = 747.0
+offset_bottom = 967.0
+theme_override_font_sizes/font_size = 48
+text = "READ 227"
+
+[node name="WRITE" type="Button" parent="." unique_id=1619150100]
+layout_mode = 0
+offset_left = 364.0
+offset_top = 557.0
+offset_right = 733.0
+offset_bottom = 725.0
+theme_override_font_sizes/font_size = 48
+text = "MODE: WRITE
+"
+
+[node name="SIGN" type="Button" parent="." unique_id=30632608]
+layout_mode = 0
+offset_left = 356.0
+offset_top = 325.0
+offset_right = 725.0
+offset_bottom = 493.0
+theme_override_font_sizes/font_size = 48
+text = "MODE: SIGN"
+
+[node name="L" type="Label" parent="." unique_id=2014981580]
+layout_mode = 0
+offset_left = 65.0
+offset_top = 42.0
+offset_right = 1062.0
+offset_bottom = 278.0
+theme_override_font_sizes/font_size = 64
+text = "CURRENT MODE: READ"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="READ" to="." method="_on_read_pressed"]
+[connection signal="pressed" from="WRITE" to="." method="_on_write_pressed"]
+[connection signal="pressed" from="SIGN" to="." method="_on_sign_pressed"]

@@ -4,7 +4,6 @@ root = true
 charset = utf-8
 
 [*.cs]
-# Set brace placement to "none" to force K&R (same line) style
 csharp_new_line_before_open_brace = none
 indent_style = space
 indent_size = 2

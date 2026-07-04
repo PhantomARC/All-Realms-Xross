@@ -10,10 +10,11 @@ config_version=5
 
 [application]
 
-config/name="C# .ods Parser"
+config/name="ODS Parser"
+config/tags=PackedStringArray("xross")
 run/main_scene="uid://b70brtop7sdev"
 config/features=PackedStringArray("4.7", "C#", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://ch017uepyhbn1"
 
 [display]
 
