@@ -1,0 +1,38 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Logic Cats"
+config/tags=PackedStringArray("xross")
+run/main_scene="uid://chygge60s1t6j"
+config/features=PackedStringArray("4.7", "C#", "GL Compatibility")
+config/icon="uid://cj3knuc6relwr"
+
+[display]
+
+window/size/viewport_width=270
+window/size/viewport_height=585
+window/stretch/mode="viewport"
+window/handheld/orientation=1
+
+[dotnet]
+
+project/assembly_name="Logic Cats"
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
+
+[rendering]
+
+rendering_device/driver.windows="d3d12"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

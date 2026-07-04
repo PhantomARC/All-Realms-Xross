@@ -1,0 +1,188 @@
+[gd_scene format=3 uid="uid://chygge60s1t6j"]
+
+[ext_resource type="Script" uid="uid://chnrieaccr4ho" path="res://Main.cs" id="1_ig7tw"]
+
+[node name="Control" type="Control" unique_id=6108491]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ig7tw")
+
+[node name="C" type="ColorRect" parent="." unique_id=1199659184]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.18717614, 0.18717614, 0.18717614, 1)
+
+[node name="V" type="VBoxContainer" parent="C" unique_id=959035309]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="HS" type="HBoxContainer" parent="C/V" unique_id=1351618832]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="PSet" type="Button" parent="C/V/HS" unique_id=584508470]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "<< Set"
+
+[node name="NSet" type="Button" parent="C/V/HS" unique_id=119339074]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Set >>"
+
+[node name="HC" type="HBoxContainer" parent="C/V" unique_id=239824027]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="PCard" type="Button" parent="C/V/HC" unique_id=2005588014]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "<- Card"
+
+[node name="NCard" type="Button" parent="C/V/HC" unique_id=1404859252]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Card ->"
+
+[node name="LS" type="HBoxContainer" parent="C/V" unique_id=988214690]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="X" type="ColorRect" parent="C/V/LS" unique_id=528597677]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="T" type="Label" parent="C/V/LS/X" unique_id=798371734]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "S:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="V" type="ColorRect" parent="C/V/LS" unique_id=437263153]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.1148968, 0.11489681, 0.1148968, 1)
+
+[node name="SetName" type="Label" parent="C/V/LS/V" unique_id=2046002083]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="LC" type="HBoxContainer" parent="C/V" unique_id=445968663]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="X" type="ColorRect" parent="C/V/LC" unique_id=25742337]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="T" type="Label" parent="C/V/LC/X" unique_id=1809633659]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "C:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="V" type="ColorRect" parent="C/V/LC" unique_id=1579274743]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.1148968, 0.11489681, 0.1148968, 1)
+
+[node name="CardName" type="Label" parent="C/V/LC/V" unique_id=833840680]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="LM" type="HBoxContainer" parent="C/V" unique_id=1419966576]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="X" type="ColorRect" parent="C/V/LM" unique_id=668482332]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+color = Color(0, 0, 0, 1)
+
+[node name="T" type="Label" parent="C/V/LM/X" unique_id=715875450]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "#:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="V" type="ColorRect" parent="C/V/LM" unique_id=202797544]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.1148968, 0.11489681, 0.1148968, 1)
+
+[node name="MFGN" type="Label" parent="C/V/LM/V" unique_id=550658252]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="MFGB" type="Button" parent="C/V" unique_id=997610197]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+text = "MFG"
+
+[node name="RTL" type="RichTextLabel" parent="C/V" unique_id=599398541]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3

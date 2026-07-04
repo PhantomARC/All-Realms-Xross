@@ -2,14 +2,12 @@ using Godot;
 using UARX;
 
 public partial class Main : Node {
-  private ODS ds;
-  private static readonly string ODS_Path = "res://data/ARCDB.ods";
+  private const string ODS_Path = "res://data/ARCDB.ods";
   public override void _Ready() {
-    ds = new();
-    string p_res = ds.Parse(ProjectSettings.GlobalizePath(ODS_Path));
+    string p_res = ODS.Parse(ProjectSettings.GlobalizePath(ODS_Path));
     if (p_res == "OK") {
-      GD.Print(ds.Version);
-      GD.Print(ds.FormatODS());
+      GD.Print(ODS.Version);
+      GD.Print(ODS.ODS_Data);
     }
   }
 }
