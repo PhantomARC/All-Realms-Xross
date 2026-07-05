@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://cg3hylang5fxn"]
 
-[ext_resource type="Script" uid="uid://d25jwt6qd0blf" path="res://main.gd" id="1_j0gfq"]
+[ext_resource type="Script" uid="uid://d2wf0oj86fnmi" path="res://Main.cs" id="1_ig7tw"]
 
 [node name="Main" type="Control" unique_id=1259373906]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_j0gfq")
+script = ExtResource("1_ig7tw")
 
 [node name="READ" type="Button" parent="." unique_id=402323987]
 layout_mode = 0

@@ -27,11 +27,52 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 12
+theme_override_constants/separation = 6
+
+[node name="MODE" type="HBoxContainer" parent="C/V" unique_id=107005291]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="xRead" type="Button" parent="C/V/MODE" unique_id=1533989777]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "READ"
+
+[node name="xWrite" type="Button" parent="C/V/MODE" unique_id=1512516234]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "WRITE"
+
+[node name="xSign" type="Button" parent="C/V/MODE" unique_id=1100401483]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "SIGN"
+
+[node name="Q" type="ColorRect" parent="C/V/MODE" unique_id=1269839502]
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.072842635, 0.072842635, 0.072842635, 1)
+
+[node name="xLabel" type="Label" parent="C/V/MODE/Q" unique_id=1757741726]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="HS" type="HBoxContainer" parent="C/V" unique_id=1351618832]
 layout_mode = 2
-theme_override_constants/separation = 12
+theme_override_constants/separation = 6
 
 [node name="PSet" type="Button" parent="C/V/HS" unique_id=584508470]
 unique_name_in_owner = true
@@ -49,7 +90,7 @@ text = "Set >>"
 
 [node name="HC" type="HBoxContainer" parent="C/V" unique_id=239824027]
 layout_mode = 2
-theme_override_constants/separation = 12
+theme_override_constants/separation = 6
 
 [node name="PCard" type="Button" parent="C/V/HC" unique_id=2005588014]
 unique_name_in_owner = true
@@ -67,7 +108,7 @@ text = "Card ->"
 
 [node name="LS" type="HBoxContainer" parent="C/V" unique_id=988214690]
 layout_mode = 2
-theme_override_constants/separation = 12
+theme_override_constants/separation = 6
 
 [node name="X" type="ColorRect" parent="C/V/LS" unique_id=528597677]
 custom_minimum_size = Vector2(45, 45)
@@ -104,7 +145,7 @@ size_flags_horizontal = 3
 
 [node name="LC" type="HBoxContainer" parent="C/V" unique_id=445968663]
 layout_mode = 2
-theme_override_constants/separation = 12
+theme_override_constants/separation = 6
 
 [node name="X" type="ColorRect" parent="C/V/LC" unique_id=25742337]
 custom_minimum_size = Vector2(45, 45)
@@ -141,7 +182,7 @@ size_flags_horizontal = 3
 
 [node name="LM" type="HBoxContainer" parent="C/V" unique_id=1419966576]
 layout_mode = 2
-theme_override_constants/separation = 12
+theme_override_constants/separation = 6
 
 [node name="X" type="ColorRect" parent="C/V/LM" unique_id=668482332]
 custom_minimum_size = Vector2(45, 45)

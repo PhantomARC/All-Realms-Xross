@@ -1,4 +1,3 @@
-// TODO: Update to match your plugin's package name.
 package uarx.allrealmsxross.arxnfc
 
 import android.nfc.NfcAdapter
@@ -38,12 +37,13 @@ class GodotAndroidPlugin(godot: Godot) : GodotPlugin(godot), NfcAdapter.ReaderCa
     private var currTag: MifareUltralight? = null
     private var isNFC = false //toggle listen state
     private var opMode = OP.READ //operational status
-    private var readIndex = 227
+    private var readIndex = 4
+    private var readEnd = 9
     private val writePayload = mutableListOf<Pair<Int, ByteArray>>()
 
     
-    /* Retrieve plugin name */
     override fun getPluginName() = BuildConfig.GODOT_PLUGIN_NAME
+
 
     override fun getPluginSignals(): Set<SignalInfo> {
         return setOf(
@@ -54,20 +54,24 @@ class GodotAndroidPlugin(godot: Godot) : GodotPlugin(godot), NfcAdapter.ReaderCa
         )
     }
 
+
     override fun onMainPause() { // Handle Android interruptions
         super.onMainPause()
         rNFC?.disableReaderMode(activity)
     }
+
 
     override fun onMainResume() {
         super.onMainResume()
         if (isNFC) onNFC()
     }
 
+
     private fun closeTag() {
         currTag?.runCatching { close() }
         currTag = null
     }
+
 
     override fun onTagDiscovered(tag: Tag) {
         closeTag() //purge old tag
@@ -123,9 +127,9 @@ class GodotAndroidPlugin(godot: Godot) : GodotPlugin(godot), NfcAdapter.ReaderCa
 
             if (tagType == TAGState.LOCKED || tagType == TAGState.UNLOCKED) {
                 when (opMode) {
-                    OP.WRITE -> {}
+                    OP.WRITE -> {writeNFC(mifare)}
                     OP.SIGN -> {if(tagType == TAGState.UNLOCKED) signNFC(mifare)}
-                    else ->  readNFC(mifare)
+                    else ->  burstReadNFC(mifare)
                 }
             }
 
@@ -147,11 +151,27 @@ class GodotAndroidPlugin(godot: Godot) : GodotPlugin(godot), NfcAdapter.ReaderCa
     }
 
 
-    fun signNFC(mf: MifareUltralight) {
+    private fun signNFC(mf: MifareUltralight) {
         try {
-            mf.timeout = 2000 // High timeout for configuration/EEPROM sectors
+            mf.timeout = 2000
 
             for (item in SIGNATURE) {
+                mf.writePage(item.first, item.second)
+                Thread.sleep(10)
+            }
+        } catch (e: IOException) {
+            emitSignal("nfc_error", "Configuration write sequence failed: ${e.message}")
+            closeTag()
+            emitSignal("tag_lost")
+        }
+    }
+
+
+    private fun writeNFC(mf: MifareUltralight) {
+        try {
+            mf.timeout = 2000
+
+            for (item in writePayload) {
                 mf.writePage(item.first, item.second)
                 Thread.sleep(10)
             }
@@ -240,6 +260,50 @@ class GodotAndroidPlugin(godot: Godot) : GodotPlugin(godot), NfcAdapter.ReaderCa
             "WRITE" -> OP.WRITE
             "SIGN"  -> OP.SIGN
             else    -> OP.READ
+        }
+    }
+
+    @UsedByGodot
+    fun setWritePayload(ids: IntArray, flattenedBytes: ByteArray, byteLengths: IntArray) {
+        writePayload.clear()
+        var byteOffset = 0
+        for (i in ids.indices) {
+            val id = ids[i]
+            val length = byteLengths[i]
+            val originalByteArray = flattenedBytes.copyOfRange(byteOffset, byteOffset + length)
+            byteOffset += length
+            emitSignal("nfc_error", "Writing payload to page ${ids[i]}....")
+            writePayload.add(Pair(id, originalByteArray))
+        }
+    }
+
+    @UsedByGodot
+    fun setReadIndices(start:Int,end:Int) {
+        readIndex = start
+        readEnd = end
+    }
+
+
+    private fun burstReadNFC(mf: MifareUltralight) {
+            if (readIndex > readEnd || readIndex < 0 || readEnd > 230) {
+            emitSignal("nfc_error", "Invalid fast read page parameters.")
+            return
+        }
+
+        try {
+            mf.timeout = 500 
+
+            val command = byteArrayOf(
+                0x3A.toByte(), 
+                readIndex.toByte(), 
+                readEnd.toByte()
+            )
+            val continuousData = mf.transceive(command)
+            emitSignal("tag_read", continuousData.joinToString(",") { "%02X".format(it) })
+        } catch (e: IOException) {
+            emitSignal("nfc_error", "Continuous fast read failed: ${e.message}")
+            closeTag()
+            emitSignal("tag_lost")
         }
     }
 }

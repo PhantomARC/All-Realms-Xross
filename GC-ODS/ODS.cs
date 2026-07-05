@@ -2,6 +2,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Xml;
 using Godot.Collections;
+using Godot;
 
 namespace UARX;
 
@@ -18,14 +19,14 @@ public class ODS {
 
   public static Array<string> GetCardList(string set) {
     Array<string> cards = [];
-    foreach(Array<string>c in ODS_Data[set]) cards.Add(c[1]);
+    foreach (Array<string> c in ODS_Data[set]) cards.Add(c[1]);
     return cards;
   }
 
   public static Array<string> GetCardList(int setN) {
     Array<string> cards = [];
     string set = GetSetList()[setN];
-    foreach(Array<string>c in ODS_Data[set]) cards.Add(c[1]);
+    foreach (Array<string> c in ODS_Data[set]) cards.Add(c[1]);
     return cards;
   }
 
@@ -36,13 +37,17 @@ public class ODS {
   }
 
 
+
   public static string Parse(string path) {
-    if (!File.Exists(path)) return "PATH_DNE";
-    using ZipArchive za = ZipFile.OpenRead(path);
-    ZipArchiveEntry zaar = za.GetEntry("content.xml");
-    if (zaar == null) return "NULL_FILE";
+    if (!Godot.FileAccess.FileExists(path)) return "PATH_DNE";
+    ZipReader zipReader = new ZipReader();
+    Error err = zipReader.Open(path);
+    if (err != Error.Ok) return "ZIP_OPEN_ERROR";
+    byte[] xmlBytes = zipReader.ReadFile("content.xml");
+    zipReader.Close();
+    if (xmlBytes == null || xmlBytes.Length == 0) return "NULL_FILE";
     XmlDocument xdoc = new();
-    xdoc.Load(zaar.Open());
+    using (MemoryStream ms = new MemoryStream(xmlBytes)) xdoc.Load(ms);
     XmlNodeList xmls = xdoc.GetElementsByTagName("table:table");
     foreach (XmlNode sheet in xmls) {
       string sheetName = sheet.Attributes?["table:name"]?.Value;
