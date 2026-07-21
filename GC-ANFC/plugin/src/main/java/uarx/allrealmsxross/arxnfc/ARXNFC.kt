@@ -50,7 +50,9 @@ class GodotAndroidPlugin(godot: Godot) : GodotPlugin(godot), NfcAdapter.ReaderCa
             SignalInfo("tag_discovered", String::class.java, String::class.java),
             SignalInfo("tag_lost"),
             SignalInfo("tag_read", String::class.java),
-            SignalInfo("nfc_error", String::class.java)
+            SignalInfo("nfc_error", String::class.java),
+            SignalInfo("nfc_sign_status", Boolean::class.javaObjectType),
+            SignalInfo("nfc_write_status", Boolean::class.javaObjectType)
         )
     }
 
@@ -127,8 +129,15 @@ class GodotAndroidPlugin(godot: Godot) : GodotPlugin(godot), NfcAdapter.ReaderCa
 
             if (tagType == TAGState.LOCKED || tagType == TAGState.UNLOCKED) {
                 when (opMode) {
-                    OP.WRITE -> {writeNFC(mifare)}
-                    OP.SIGN -> {if(tagType == TAGState.UNLOCKED) signNFC(mifare)}
+                    OP.WRITE -> {emitSignal("nfc_write_status", writeNFC(mifare))}
+                    OP.SIGN -> {
+                        if(tagType == TAGState.UNLOCKED) {
+                            signNFC(mifare)
+                            emitSignal("nfc_sign_status", true)
+                        } else {
+                            emitSignal("nfc_sign_status", false)
+                        }
+                    }
                     else ->  burstReadNFC(mifare)
                 }
             }
@@ -159,15 +168,18 @@ class GodotAndroidPlugin(godot: Godot) : GodotPlugin(godot), NfcAdapter.ReaderCa
                 mf.writePage(item.first, item.second)
                 Thread.sleep(10)
             }
+            emitSignal("nfc_error", "Signing successful.")
+            emitSignal("nfc_sign_status", true)
         } catch (e: IOException) {
-            emitSignal("nfc_error", "Configuration write sequence failed: ${e.message}")
+            emitSignal("nfc_error", "Signing failed: ${e.message}")
+            emitSignal("nfc_sign_status", false)
             closeTag()
             emitSignal("tag_lost")
         }
     }
 
 
-    private fun writeNFC(mf: MifareUltralight) {
+    private fun writeNFC(mf: MifareUltralight): Boolean {
         try {
             mf.timeout = 2000
 
@@ -175,11 +187,14 @@ class GodotAndroidPlugin(godot: Godot) : GodotPlugin(godot), NfcAdapter.ReaderCa
                 mf.writePage(item.first, item.second)
                 Thread.sleep(10)
             }
+            emitSignal("nfc_error", "Write Operation successful.")
         } catch (e: IOException) {
-            emitSignal("nfc_error", "Configuration write sequence failed: ${e.message}")
+            emitSignal("nfc_error", "Write Operation Failed: ${e.message}")
             closeTag()
             emitSignal("tag_lost")
+            return false
         }
+        return true
     }
 
 
@@ -211,6 +226,7 @@ class GodotAndroidPlugin(godot: Godot) : GodotPlugin(godot), NfcAdapter.ReaderCa
         }
     }
 
+    //DEPRECATED
     @UsedByGodot
     fun read(pageIndex: Int): ByteArray {
         val mifare = currTag
@@ -229,6 +245,7 @@ class GodotAndroidPlugin(godot: Godot) : GodotPlugin(godot), NfcAdapter.ReaderCa
         }
     }
 
+    //DEPRECATED
     @UsedByGodot
     fun write(pageIndex: Int, data: ByteArray): Boolean {
         // Enforce the 4-byte strictness 
@@ -272,9 +289,9 @@ class GodotAndroidPlugin(godot: Godot) : GodotPlugin(godot), NfcAdapter.ReaderCa
             val length = byteLengths[i]
             val originalByteArray = flattenedBytes.copyOfRange(byteOffset, byteOffset + length)
             byteOffset += length
-            emitSignal("nfc_error", "Writing payload to page ${ids[i]}....")
             writePayload.add(Pair(id, originalByteArray))
         }
+        emitSignal("nfc_error", "New payload set.")
     }
 
     @UsedByGodot

@@ -8,18 +8,26 @@
 
 config_version=5
 
+[accessibility]
+
+general/updates_per_second=24
+
 [application]
 
-config/name="Logic Cats"
+config/name="ARX MFC Signer"
+config/description="Signs and writes to NFC tags. Also contains a read module to parse tag data."
+config/version="1"
 config/tags=PackedStringArray("xross")
-run/main_scene="uid://chygge60s1t6j"
+run/main_scene="uid://clf8wt32sj1lr"
 config/features=PackedStringArray("4.7", "C#", "GL Compatibility")
+boot_splash/show_image=false
+boot_splash/use_filter=false
 config/icon="uid://cj3knuc6relwr"
 
 [display]
 
-window/size/viewport_width=270
-window/size/viewport_height=585
+window/size/viewport_width=1080
+window/size/viewport_height=2340
 window/stretch/mode="viewport"
 window/handheld/orientation=1
 
@@ -31,6 +39,11 @@ project/assembly_name="Logic Cats"
 
 enabled=PackedStringArray("res://addons/ARXNFC/plugin.cfg")
 
+[gui]
+
+theme/default_font_antialiasing=2
+theme/custom_font="uid://ccpo3bu1b72x1"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
@@ -41,3 +54,10 @@ rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
+environment/ssao/quality=0
+environment/ssil/quality=0
+environment/glow/upscale_mode=0
+environment/subsurface_scattering/subsurface_scattering_quality=0
+global_illumination/sdfgi/frames_to_converge=0
+environment/volumetric_fog/use_filter=0
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
