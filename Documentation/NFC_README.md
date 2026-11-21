@@ -271,11 +271,19 @@ Alternate Artworks range from `0` to `f` (for a maximum of 16 total artworks).
 
 ### Runes
 
-Runes. In addition, flat values corresponding to the unit’s base rune stats, ranging from 0-255 each. Runes 0 & 1 are stored here. Note that some games may not use this data.
+| ID | Rune | Icon |
+| :---: | :---: | :---: |
+| `0` | <i>Combat</i> | ![✧]() |
+| `1` | <i>Travel</i> | ![👢︎]() |
+| `2` | <i>Protection</i> | ![⛨]() |
+| `3` | <i>Arcane</i> | ![✧]() |
+| `4` | <i>Logic</i> | ![🖪]() |
+| `5` | <i>Blossom</i> | ![✾]() |
 
 ### Base Rune Stats
 
-
+Flat values corresponding to the unit’s base rune stats, ranging from 0-255 each.
+> Note that some games may not use this data.
 
 ### Unit PRNG Hash
 
