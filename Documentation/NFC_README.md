@@ -273,12 +273,12 @@ Alternate Artworks range from `0` to `f` (for a maximum of 16 total artworks).
 
 | ID | Rune | Icon |
 | :---: | :---: | :---: |
-| `0` | <i>Combat</i> | ![✧]() |
-| `1` | <i>Travel</i> | ![👢︎]() |
-| `2` | <i>Protection</i> | ![⛨]() |
-| `3` | <i>Arcane</i> | ![✧]() |
-| `4` | <i>Logic</i> | ![🖪]() |
-| `5` | <i>Blossom</i> | ![✾]() |
+| `0` | <i>Combat</i> | ![⚔︎](https://github.com/PhantomARC/All-Realms-Xross/blob/main/Documentation/Rune%20Icons/rune_combat.svg) |
+| `1` | <i>Travel</i> | ![👢︎](https://github.com/PhantomARC/All-Realms-Xross/blob/main/Documentation/Rune%20Icons/rune_travel.svg) |
+| `2` | <i>Protection</i> | ![⛨](https://github.com/PhantomARC/All-Realms-Xross/blob/main/Documentation/Rune%20Icons/rune_protection.svg) |
+| `3` | <i>Arcane</i> | ![✧](https://github.com/PhantomARC/All-Realms-Xross/blob/main/Documentation/Rune%20Icons/rune_arcane.svg) |
+| `4` | <i>Logic</i> | ![🖪](https://github.com/PhantomARC/All-Realms-Xross/blob/main/Documentation/Rune%20Icons/rune_logic.svg) |
+| `5` | <i>Blossom</i> | ![✾](https://github.com/PhantomARC/All-Realms-Xross/blob/main/Documentation/Rune%20Icons/rune_blossom.svg) |
 
 ### Base Rune Stats
 
