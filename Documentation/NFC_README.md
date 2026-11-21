@@ -14,6 +14,8 @@
 [pack]: #password-acknowledgement
 [rfui]: #rfui
 [src]: https://www.nxp.com/docs/en/data-sheet/NTAG213_215_216.pdf
+[arxdata]: #arx-data
+[arxsteps]:#arx-write-steps
 [arxhexid]: #hex-id
 [arxmfgid]: #manufacture-supplier-id
 [arxmfgdata]: #manufacturing-index
@@ -51,8 +53,8 @@ Last updated on 11/19/2026. Data sourced from [NXP Semiconductors][src] and inde
 ## Table of Contents
 <!-- ToC -->
 - [System Page Specifications][sys]
-- [ARX Data][sys]
-- [ARX Write Steps][sys]
+- [ARX Data][arxdata]
+- [ARX Write Steps][arxsteps]
 
 ## System Page Specifications
 
@@ -198,7 +200,7 @@ Password Acknowledgement, also known as PACK, is a signature used to verify that
 
 ## ARX Data
 
-> This section details the data printed on each ARX NTAG. It is currently a work-in-progress, with more details being added day-by-day. 
+> This section details the data printed on each ARX NTAG. It is currently a work-in-progress.
 
 | Page | Purpose |
 | :---: | :--- |
@@ -287,20 +289,47 @@ Flat values corresponding to the unit’s base rune stats, ranging from 0-255 ea
 
 ### Unit PRNG Hash
 
+A random 32-bit hash should be generated for each card.
 
 ### ARX AUTH0
 
+On Manufacture, set `00 00 00 00` to R/W protect the entire card.
 
 ### ARX ACCESS
 
+Set to `C0 00 00 00` to lock access to read & write via password, as well as permanently locking pages 227-228.
 
 ### ARX PASSWORD
 
+`5F 41 52 58`
 
 ### ARX PACK
 
+`02 47 00 00` 
 
+# ARX Write Steps
 
+Signing Payload:
+
+| Step | Page | Payload | Purpose |
+|---: | :---: | :---: | :--- |
+| 1) | 229 | `5f 41 52 58` | Set `PWD` |
+| 2) | 230 | `02 47 00 00` | Set `PACK` |
+| 3) | 227 | `00 00 00 00` | Set `AUTH0` |
+| 4) | 228 | `c0 00 00 00` | Set `CFG_LOCK` |
+
+Card Writing Payload:
+
+| Step | Page | Payload | Purpose |
+|---: | :---: | :---: | :--- |
+| 1) | 4 | `5f 41 52 58` | Data. Manufacturer ID |
+| 2) | 5 | `MFID MFID SET CARDID` | Data. Print Number + Set + Card Index |
+| 3) | 6 | `HID HID Faction FA` | Data. Hex ID + Faction + Finish + Art |
+| 4) | 7 | `RUNE RUNE R0 R1` | Data. Rune Orientation + Combat # + Travel # |
+| 5) | 8 | `R2 R3 R4 R5` | Data. Protection # + Arcane # + Logic  # + Blossom # |
+| 6) | 9 | `RNG RNG RNG RNG` | Data. PRNG Hash. Randomly Generated. |
+| 7) | 2 | `00 00 f0 03` | Write-Protect Pages 4-9 |
+| 8) | 2 | `00 00 03 00` | Write-Protect Lock Bytes |
 
 
 
