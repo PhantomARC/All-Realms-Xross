@@ -241,18 +241,18 @@ For generic cards, the card finish and alt-art should be set to `00`.
 The table of Factions is listed below. 
 > The faction list is currently a work-in-progress.
 
-| ID | Faction |
-| :---: | :---: |
-| `00` | <i>Reserved</i> |
-| `01` | <b>Solaris ✧</b> |
-| `02` | <b>Gradatim ⛭</b> |
-| `03` | <b>Logia 🗺 </b> |
-| `04` | <b>Judicia Telos 🕮</b> |
-| `05` | <b>Vitus ⚗</b> |
-| `06` | <b>Renneaux 🖌</b> |
-| `07` | <b>Agri ❀</b> |
-| `08` | <b>Paradeux ⚔︎</b> |
-| `09` | <b>Crossover ❖</b> |
+| ID | Faction | Icon |
+| :---: | :---: | :---: |
+| `00` | <i>Reserved</i> |  |
+| `01` | <b>Solaris</b> | ![✧](https://github.com/PhantomARC/All-Realms-Xross/blob/main/Documentation/Faction%20Icons/faction_solaris.svg) |
+| `02` | <b>Gradatim</b> | ![⛭](https://github.com/PhantomARC/All-Realms-Xross/blob/main/Documentation/Faction%20Icons/faction_gradatim.svg) |
+| `03` | <b>Logia</b> | ![🗺](https://github.com/PhantomARC/All-Realms-Xross/blob/main/Documentation/Faction%20Icons/faction_logia.svg) |
+| `04` | <b>Judicia Telos</b> | ![🕮](https://github.com/PhantomARC/All-Realms-Xross/blob/main/Documentation/Faction%20Icons/faction_judicia_telos.svg) |
+| `05` | <b>Vitus</b> | ![⚗](https://github.com/PhantomARC/All-Realms-Xross/blob/main/Documentation/Faction%20Icons/faction_vitus.svg) |
+| `06` | <b>Renneaux</b> | ![🖌](https://github.com/PhantomARC/All-Realms-Xross/blob/main/Documentation/Faction%20Icons/faction_renneaux.svg) |
+| `07` | <b>Agri</b>  | ![❀](https://github.com/PhantomARC/All-Realms-Xross/blob/main/Documentation/Faction%20Icons/faction_agri.svg) |
+| `08` | <b>Paradeux</b>  | ![⚔︎](https://github.com/PhantomARC/All-Realms-Xross/blob/main/Documentation/Faction%20Icons/faction_paradeux.svg) |
+| `09` | <b>Crossover</b> | ![❖](https://github.com/PhantomARC/All-Realms-Xross/blob/main/Documentation/Faction%20Icons/faction_crossover.svg) |
 
 The table of finishes is described below:
 
